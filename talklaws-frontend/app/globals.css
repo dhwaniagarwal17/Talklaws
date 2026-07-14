@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* ── Backgrounds ─────────────────────────────── */
+    --bg: #FAF8F6;
+    --card: #FFFFFF;
+    --surface: #EDEBE5;          /* Stronger surface — was #F3F0EC, now more visible */
+
+    /* ── Typography hierarchy ────────────────────── */
+    --text-primary: #141414;     /* Near-black */
+    --text-secondary: #2E2E2E;   /* Darkened for contrast — was #4A4A4A */
+    --text-tertiary: #525252;    /* Supporting/helper text — was #6B6B6B */
+
+    /* ── Brand colours ───────────────────────────── */
+    --primary: #6B001A;
+    --primary-hover: #560015;
+    --secondary: #8B2040;
+
+    /* ── Gold — split into display vs text use ───── */
+    --luxury: #C4A035;           /* Keep for decorative/SVG/borders */
+    --luxury-text: #8B6914;      /* Darker gold for text — 4.6:1 on white (AA) */
+    --luxury-light: #D4B04A;
+
+    /* ── Structure ───────────────────────────────── */
+    --border: #D8D6D0;           /* Slightly stronger — was #E5E5E5 */
+    --border-strong: #BEBAB2;    /* Stronger — was #CFCFCF */
+  }
+
+  .dark {
+    --bg: #0F0A0B;
+    --card: #1A1013;
+    --surface: #1F1215;
+
+    --text-primary: #F0EBE8;
+    --text-secondary: #A89FA2;   /* Lighter in dark — was #9A8A8E */
+    --text-tertiary: #7A6F72;
+
+    --primary: #8B2040;
+    --primary-hover: #A0253A;
+    --secondary: #B04060;
+
+    --luxury: #C4A035;
+    --luxury-text: #D4B04A;      /* In dark, original luxury works fine as text */
+    --luxury-light: #D4B04A;
+
+    --border: #2A1E20;
+    --border-strong: #3A2A2E;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--primary);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .font-display {
+    font-variant-numeric: lining-nums;
+    letter-spacing: -0.03em;
+  }
+  .tracking-editorial {
+    letter-spacing: -0.04em;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Smooth anchor transitions */
+html {
+  scroll-padding-top: 80px;
+}
