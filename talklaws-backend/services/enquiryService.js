@@ -43,12 +43,16 @@ const getAllEnquiries = async (queryParams) => {
     ];
   }
 
+  // Whitelist allowed sort fields to prevent operator injection via sortBy param
+  const ALLOWED_SORT_FIELDS = ["createdAt", "updatedAt", "status", "name", "email"];
+  const safeSortBy = ALLOWED_SORT_FIELDS.includes(sortBy) ? sortBy : "createdAt";
+
   const skip = (Number(page) - 1) * Number(limit);
   const sortOrder = order === "asc" ? 1 : -1;
 
   const [enquiries, total] = await Promise.all([
     Enquiry.find(filter)
-      .sort({ [sortBy]: sortOrder })
+      .sort({ [safeSortBy]: sortOrder })
       .skip(skip)
       .limit(Number(limit))
       .lean(), // .lean() returns plain JS objects — faster for read-only

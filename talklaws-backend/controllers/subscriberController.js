@@ -52,7 +52,14 @@ const unsubscribe = async (req, res, next) => {
       return res.status(400).json({ success: false, message: "Email is required." });
     }
 
-    await subscriberService.unsubscribeByEmail(decodeURIComponent(email));
+    // Validate and normalise the email before touching the database
+    const decoded = decodeURIComponent(email).trim().toLowerCase();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(decoded)) {
+      return res.status(400).json({ success: false, message: "Invalid email address." });
+    }
+
+    await subscriberService.unsubscribeByEmail(decoded);
 
     // Respond with a plain HTML confirmation page
     res.status(200).send(`<!DOCTYPE html>

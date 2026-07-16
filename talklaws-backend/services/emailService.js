@@ -156,8 +156,12 @@ async function sendArticleUpdate({ title, excerpt, articleUrl, recipients }) {
 
     const results = await Promise.allSettled(
       batch.map((email) => {
-        // In sandbox mode (no verified domain), override recipient to test address
-        const to = process.env.RESEND_TEST_EMAIL || email;
+        // In non-production environments, redirect to test address if configured.
+        // In production, always send to the real subscriber email.
+        const to =
+          process.env.NODE_ENV !== "production" && process.env.RESEND_TEST_EMAIL
+            ? process.env.RESEND_TEST_EMAIL
+            : email;
         return getResend().emails.send({
           from: FROM_EMAIL,
           to,

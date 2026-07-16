@@ -10,7 +10,7 @@ const { body } = require("express-validator");
 
 const { subscribe, unsubscribe } = require("../controllers/subscriberController");
 const validate = require("../middleware/validate");
-const { contactLimiter } = require("../middleware/rateLimiter");
+const { subscribeLimiter, unsubscribeLimiter } = require("../middleware/rateLimiter");
 
 const subscribeValidation = [
   body("email")
@@ -21,9 +21,9 @@ const subscribeValidation = [
 ];
 
 // POST /api/subscribe
-router.post("/subscribe", contactLimiter, subscribeValidation, validate, subscribe);
+router.post("/subscribe", subscribeLimiter, subscribeValidation, validate, subscribe);
 
 // GET /api/unsubscribe?email=...
-router.get("/unsubscribe", unsubscribe);
+router.get("/unsubscribe", unsubscribeLimiter, unsubscribe);
 
 module.exports = router;
