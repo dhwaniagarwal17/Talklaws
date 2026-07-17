@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#F8F7F4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E0E0E" },
+    { media: "(prefers-color-scheme: dark)", color: "#120D0E" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -67,6 +67,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/*
+          Inline script runs synchronously before React hydrates.
+          It reads the stored theme preference and sets the `dark` class
+          on <html> immediately — eliminating any flash of wrong theme
+          and making the SSR class match the client's first paint.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('talklaws-theme');
+                  var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  var theme = stored || preferred;
+                  if (theme === 'dark') document.documentElement.classList.add('dark');
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`} suppressHydrationWarning>
         {children}
       </body>

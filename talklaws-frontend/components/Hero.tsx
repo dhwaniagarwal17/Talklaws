@@ -65,7 +65,7 @@ export default function Hero() {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-[70vh]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-12 lg:gap-20 items-center min-h-[70vh]">
           {/* Left — Content */}
           <motion.div
             variants={staggerContainer}
@@ -205,7 +205,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-[480px] lg:h-[560px]"
+            className="hidden md:block relative md:h-[500px] lg:h-[560px]"
           >
             <HeroIllustration />
           </motion.div>

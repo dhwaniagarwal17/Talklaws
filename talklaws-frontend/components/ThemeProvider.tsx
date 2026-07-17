@@ -17,18 +17,26 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
+  // Lazy initializer reads the stored preference synchronously on the client.
+  // On the server `localStorage` doesn't exist, so it falls back to "light" —
+  // matching the SSR output. The inline script in layout.tsx has already
+  // applied the correct class to <html> before React hydrates, so there
+  // is no visible flash regardless of what value is returned here.
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
     const stored = localStorage.getItem("talklaws-theme") as Theme | null;
     const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
-    const initial = stored || preferred;
-    setTheme(initial);
+    return stored || preferred;
+  });
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // Mark as mounted and ensure the class is in sync.
+    document.documentElement.classList.toggle("dark", theme === "dark");
     setMounted(true);
-    document.documentElement.classList.toggle("dark", initial === "dark");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const toggleTheme = () => {

@@ -31,8 +31,14 @@ function isActive(href: string, pathname: string, activeSection: string): boolea
 }
 
 export default function Navbar() {
-  const { theme, mounted, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const router = useRouter();
@@ -191,7 +197,6 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
               className="w-9 h-9 rounded-xl flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border)] transition-colors"
               aria-label="Toggle colour mode"
-              suppressHydrationWarning
             >
               {mounted ? (
                 <AnimatePresence mode="wait">
