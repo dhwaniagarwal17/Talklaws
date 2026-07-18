@@ -127,7 +127,7 @@ function SendUpdatePage() {
 
         <div style={{ backgroundColor: "#fff", border: "1px solid #E5E5E5", borderRadius: "1.25rem", padding: "2rem" }}>
           {field("Article Title", "The headline shown in the email subject and body.", title, setTitle)}
-          {field("Article URL", "Full URL — e.g. https://talklaws.com/insights/dpdp-act-startups", articleUrl, setUrl)}
+          {field("Article URL", "Full URL — e.g. https://www.talklaws.in/insights/dpdp-act-startups", articleUrl, setUrl)}
           {field("Short Excerpt", "1–3 sentences. Appears below the title in the email body. Max 500 characters.", excerpt, setExcerpt, true)}
 
           {result && (

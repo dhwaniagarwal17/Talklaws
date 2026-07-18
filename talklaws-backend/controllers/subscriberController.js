@@ -74,7 +74,7 @@ a{color:#6B001A;font-weight:600;text-decoration:none;}</style>
 <body><div class="box">
 <h1>You have been unsubscribed.</h1>
 <p>Your email has been removed from the TALKLAWS insights mailing list. You will no longer receive updates from us.</p>
-<a href="${process.env.CLIENT_URL || "https://talklaws.com"}">Return to TALKLAWS</a>
+<a href="${process.env.CLIENT_URL || "https://www.talklaws.in"}">Return to TALKLAWS</a>
 </div></body></html>`);
   } catch (error) {
     next(error);

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://talklaws.com",
+    url: "https://www.talklaws.in",
     siteName: "TALKLAWS",
     title: "TALKLAWS — Corporate Legal & Compliance Advisory",
     description:
@@ -51,6 +51,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "4SyLnBKPbg2WB-0aMsjmIsjBpNxsOjaQSqXoEqCc_mI",
+  },
+  alternates: {
+    canonical: "https://www.talklaws.in",
   },
 };
 

@@ -8,7 +8,7 @@
  * Setup:
  *   npm install resend
  *   Add RESEND_API_KEY to .env
- *   Set RESEND_FROM_EMAIL to a verified sender (e.g. updates@talklaws.com)
+ *   Set RESEND_FROM_EMAIL to a verified sender (e.g. updates@talklaws.in)
  */
 
 const { Resend } = require("resend");
@@ -27,7 +27,7 @@ function getResend() {
 }
 
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
-const SITE_URL = process.env.CLIENT_URL || "https://talklaws.com";
+const SITE_URL = process.env.CLIENT_URL || "https://www.talklaws.in";
 
 /**
  * Builds the branded HTML email template for an article update.

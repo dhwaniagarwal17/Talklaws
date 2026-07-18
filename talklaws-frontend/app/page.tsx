@@ -13,10 +13,12 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 
 export default function Home() {
   return (
     <ThemeProvider>
+      <JsonLd />
       <div className="min-h-screen bg-[var(--bg)]">
         <Navbar />
         <main>
