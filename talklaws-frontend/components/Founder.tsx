@@ -66,9 +66,9 @@ export default function Founder() {
             variants={fadeInLeft}
             className="relative"
           >
-            {/* Outer glow container — social icons live inside this */}
+            {/* Outer glow container — decorative only, must not intercept touch */}
             <div
-              className="absolute -inset-3 rounded-3xl"
+              className="absolute -inset-3 rounded-3xl pointer-events-none"
               style={{
                 background: "linear-gradient(135deg, rgba(107,0,26,0.05) 0%, rgba(196,160,53,0.05) 100%)",
                 border: "1px solid var(--border)",
