@@ -49,6 +49,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "4SyLnBKPbg2WB-0aMsjmIsjBpNxsOjaQSqXoEqCc_mI",
+  },
 };
 
 export const viewport: Viewport = {
